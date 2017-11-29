@@ -48,11 +48,11 @@ def edit(id):
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('404.html'), 404
+    return render_template('404.html', e=e), 404
 
 @app.errorhandler(500)
 def page_error(e):
-    return "500 error"
+    return render_template('404.html', e=e), 500
 
 if __name__ == '__main__':
 	app.run(port=3000)
