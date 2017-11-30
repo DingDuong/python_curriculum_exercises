@@ -43,7 +43,7 @@ def new():
 
 @app.route('/snacks/<int:id>', methods = ['GET', 'PATCH', 'DELETE'])
 def show(id):
-	found_snack = Snack.query.get(id)
+	found_snack = Snack.query.get_or_404(id)
 
 	if request.method == b'DELETE':
 		db.session.delete(found_snack)
@@ -61,7 +61,7 @@ def show(id):
 
 @app.route('/snacks/<int:id>/edit')
 def edit(id):
-	found_snack = Snack.query.get(id)
+	found_snack = Snack.query.get_or_404(id)
 	return render_template('edit.html', snack=found_snack)
 
 @app.errorhandler(404)
